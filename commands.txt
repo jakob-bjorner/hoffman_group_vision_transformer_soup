@@ -1,0 +1,22 @@
+# tmux related: (always use tmux for persistant running code just in case terminal exits)
+man tmux
+tmux list-sessions
+tmux kill-sessoin -t [ses-number]
+tmux attach -t [ses-number]
+
+
+# launching interactive job/requesting a gpu
+srun --gres gpu:2 --pty bash
+
+# jupyter notebook note: use different ports if these do not work, just correspond them.
+
+On Local: ssh -N -L localhost:8888:localhost:8856 <GTUSER>@sky1.cc.gatech.edu
+On sky: start a notebook on port 8855
+First go to gpu node: srun --gres gpu:1 --pty bash
+jupyter notebook --no-browser --port 8855
+On sky: ssh -N -L localhost:8856:localhost:8855 <GTUSER>@(gpu node).cc.gatech.edu
+
+# on tmux gpu server
+jupyter notebook --port 8803
+# on skynet ssh client. 
+ssh -N -L localhost:8853:localhost:8803 jbjorner3@optimistprime.cc.gatech.edu
