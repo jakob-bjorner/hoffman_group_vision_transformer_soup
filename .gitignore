@@ -133,3 +133,4 @@ dmypy.json
 # self additions:
 vision_transformer
 ~
+*.npz

@@ -12,11 +12,16 @@ srun --gres gpu:2 --pty bash
 
 On Local: ssh -N -L localhost:8888:localhost:8856 <GTUSER>@sky1.cc.gatech.edu
 On sky: start a notebook on port 8855
-First go to gpu node: srun --gres gpu:1 --pty bash
-jupyter notebook --no-browser --port 8855
+activate environment: conda activate george-37-v3
+First go to gpu node: srun -p short --gres gpu:1 --constraint=rtx_6000 --pty bash
+for overcap: srun -p overcap -A overcap --gres gpu:1 --constraint=rtx_6000 --pty bash
+jupyter notebook --no-browser --port 8803
 On sky: ssh -N -L localhost:8856:localhost:8855 <GTUSER>@(gpu node).cc.gatech.edu
 
 # on tmux gpu server
-jupyter notebook --port 8803
+jupyter notebook --no-browser --port 8803 # copy this to 
 # on skynet ssh client. 
-ssh -N -L localhost:8853:localhost:8803 jbjorner3@optimistprime.cc.gatech.edu
+ssh -N -L localhost:8803:localhost:8803 jbjorner3@zima.cc.gatech.edu
+# on local
+ssh -N -L localhost:8822:localhost:8803 jbjorner3@sky1.cc.gatech.edu
+
