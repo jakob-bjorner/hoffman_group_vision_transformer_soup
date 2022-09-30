@@ -47,6 +47,7 @@ def stratify_tfds(dataset, pct_split, seed=24):
         The dataset to split.
     pct_split: float
         Float between 0 and 1, dictating the size of the two datasets produced.
+        pct_split goes to the first set.
     seed: int
         Random seed determining the element distribution.
     
